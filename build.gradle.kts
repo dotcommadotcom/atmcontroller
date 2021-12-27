@@ -15,47 +15,26 @@ dependencies {
   runtimeOnly("org.junit.platform:junit-platform-console:1.7.1")
 }
 
-tasks.test {
-  finalizedBy("jacocoTestReport")
+val test by tasks.getting(Test::class) {
+  useJUnitPlatform {}
+  finalizedBy(tasks.jacocoTestReport)
   doLast {
     println("View code coverage at:")
     println("file://$buildDir/reports/tests/test/index.html")
   }
 }
 
-jacoco {
-  toolVersion = "0.8.6"
+tasks.jacocoTestReport {
+  dependsOn(tasks.test)
+  reports {
+    xml.required.set(false)
+    csv.required.set(false)
+  }
 }
 
-defaultTasks("clean", "test")
 
+jacoco {
+  toolVersion = "0.8.7"
+}
 
-
-//tasks {
-//  val flags = listOf("-Xlint:unchecked", "-Xlint:deprecation", "-Werror")
-//
-//  getByName<JavaCompile>("compileJava") {
-//    options.compilerArgs = flags
-//  }
-//
-//  getByName<JavaCompile>("compileTestJava") {
-//    options.compilerArgs = flags
-//  }
-//}
-//
-//val test by tasks.getting(Test::class) {
-//  useJUnitPlatform {}
-//}
-//
-//tasks.withType<JacocoReport> {
-////  afterEvaluate {
-////    classDirectories.setFrom(files(classDirectories.files.map {
-////      fileTree(it).apply {
-////        exclude("*/preview/*")
-////      }
-////    }))
-////  }
-//}
-//
-
-//
+defaultTasks("clean", "test", "jacocoTestReport")
