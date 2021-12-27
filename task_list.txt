@@ -1,0 +1,20 @@
+[ATM CONTROLLER]
+x- show balance is zero
+x- show balance is ten
+x- deposit 10 and update balance
+x- deposit 20 and update balance
+x- withdraw 10 and get zero balance
+x- withdraw 10 and get 10 balance
+x- withdraw 100 for zero balance
+- verify pin is correct
+- verify pin is incorrect
+
+- throw exception when balance < withdraw?
+- get balance from bank (integration)
+- update bank account balance with withdraw/deposit (integration)
+- get pin entered into atm machine (integration)
+- get pin from bank account (integration)
+- select account using card (integration)
+
+- The controller responds to the user input and performs interactions on the data model objects.
+- The controller receives the input, optionally validates it and then passes the input to the model.
