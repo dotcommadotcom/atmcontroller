@@ -1,16 +1,34 @@
 package atmcontroller;
 
 public class ATMController {
+  private ATM atm;
+  private Bank bank;
   private int balance;
-  private int pin;
 
-  public ATMController() {
-    balance = 0;
-    pin = 1004;
+  public void setATM(ATM _atm) {
+    atm = _atm;
   }
 
-  public ATMController(int _balance) {
-    balance = _balance;
+  public void setBank(Bank _bank) {
+    bank = _bank;
+  }
+
+  public int[] getAtmCard() {
+    return atm.getCardNumber();
+  }
+
+  public int getAtmPinEntered() {
+    return atm.getPinEntered();
+  }
+
+  public boolean isPinVerified() {
+    return bank.isPinCorrect(getAtmCard(), getAtmPinEntered());
+  }
+
+  public void setBalance() {
+    if (isPinVerified()) {
+      balance = bank.getBalance();
+    }
   }
 
   public int showBalance() {
@@ -27,7 +45,7 @@ public class ATMController {
     }
   }
 
-  public boolean isPinVerified(int pinEntered) {
-    return pin == pinEntered;
+  public void setBalance(int _balance) {
+    balance = _balance;
   }
 }

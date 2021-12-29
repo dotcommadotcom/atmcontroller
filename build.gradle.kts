@@ -13,6 +13,7 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
   runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
   runtimeOnly("org.junit.platform:junit-platform-console:1.7.1")
+  testImplementation("org.mockito:mockito-core:3.8+")
 }
 
 val test by tasks.getting(Test::class) {

@@ -1,4 +1,10 @@
 [ATM CONTROLLER]
+- Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
+x- get card number from ATM
+x- get pin entered from ATM
+x- verify pin matches account number with bank
+x- verify pin matches account number with bank
+x- set bank balance after verifying pin and card
 x- show balance is zero
 x- show balance is ten
 x- deposit 10 and update balance
@@ -6,10 +12,9 @@ x- deposit 20 and update balance
 x- withdraw 10 and get zero balance
 x- withdraw 10 and get 10 balance
 x- withdraw 100 for zero balance
-- verify pin is correct
-- verify pin is incorrect
 
 - throw exception when balance < withdraw?
+- cash bin limit?
 - get balance from bank (integration)
 - update bank account balance with withdraw/deposit (integration)
 - get pin entered into atm machine (integration)
