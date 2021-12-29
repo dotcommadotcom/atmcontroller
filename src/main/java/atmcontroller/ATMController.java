@@ -25,10 +25,8 @@ public class ATMController {
     return bank.isPinCorrect(getAtmCard(), getAtmPinEntered());
   }
 
-  public void setBalance() {
-    if (isPinVerified()) {
-      balance = bank.getBalance();
-    }
+  public void setBalance(int _balance) {
+    balance = _balance;
   }
 
   public int showBalance() {
@@ -36,16 +34,22 @@ public class ATMController {
   }
 
   public void deposit(int depositAmount) {
+    if (atm.getCashReaderAmount() != depositAmount) {
+      throw new RuntimeException("Deposit amount does not match cash deposit.");
+    }
     balance += depositAmount;
   }
 
   public void withdraw(int withdrawAmount) {
-    if (withdrawAmount <= balance) {
-      balance -= withdrawAmount;
+    if (withdrawAmount > atm.getCashBinAmount()) {
+      throw new RuntimeException("Withdrawal amount exceeds cash amount in the cash bin");
     }
+
+    if (withdrawAmount > balance) {
+      throw new RuntimeException("Withdrawal amount exceeds bank balance.");
+    }
+
+    balance -= withdrawAmount;
   }
 
-  public void setBalance(int _balance) {
-    balance = _balance;
-  }
 }

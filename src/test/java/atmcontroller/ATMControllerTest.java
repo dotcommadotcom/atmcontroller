@@ -17,8 +17,9 @@ public class ATMControllerTest {
 
     atmMock = mock(ATM.class);
     when(atmMock.getCardNumber()).thenReturn(new int[]{1000, 1111, 2222, 3333});
-    controller.setATM(atmMock);
     when(atmMock.getPinEntered()).thenReturn(1004);
+    when(atmMock.getCashReaderAmount()).thenReturn(10);
+    when(atmMock.getCashBinAmount()).thenReturn(500);
     controller.setATM(atmMock);
 
     bankMock = mock(Bank.class);
@@ -27,6 +28,72 @@ public class ATMControllerTest {
   @Test
   public void canaryTest() {
     assertTrue(true);
+  }
+
+  @Test
+  public void showBalanceIsZero() {
+    controller.setBalance(0);
+
+    assertEquals(0, controller.showBalance());
+  }
+
+  @Test
+  public void showBalanceIsTen() {
+    controller.setBalance(10);
+
+    assertEquals(10, controller.showBalance());
+  }
+
+  @Test
+  public void depositTenDollarsVerifyCorrectAmountDeposited() {
+    controller.deposit(10);
+
+    assertEquals(10, controller.showBalance());
+  }
+
+  @Test
+  public void depositTwentyDollarsVerifyIncorrectAmountDeposited() {
+    Exception exception = assertThrows(RuntimeException.class, () -> controller.deposit(20));
+
+    assertAll(
+            () -> assertEquals("Deposit amount does not match cash deposit.", exception.getMessage()),
+            () -> assertEquals(0, controller.showBalance())
+    );
+  }
+
+  @Test
+  public void withdrawTenDollarsGetZeroBalance() {
+    controller.setBalance(10);
+
+    controller.withdraw(10);
+
+    assertEquals(0, controller.showBalance());
+  }
+
+  @Test
+  public void withdrawFifteenDollarsGetFiveBalance() {
+    controller.setBalance(20);
+
+    controller.withdraw(15);
+
+    assertEquals(5, controller.showBalance());
+  }
+
+  @Test
+  public void withdrawMoreMoneyThanBankAmountThrowsException() {
+    Exception exception = assertThrows(RuntimeException.class, () -> controller.withdraw(100));
+
+    assertAll(
+            () -> assertEquals("Withdrawal amount exceeds bank balance.", exception.getMessage()),
+            () -> assertEquals(0, controller.showBalance())
+    );
+  }
+
+  @Test
+  public void withdrawMoreCashThanCashBinThrowsException() {
+    Exception exception = assertThrows(RuntimeException.class, () -> controller.withdraw(10000));
+
+    assertEquals("Withdrawal amount exceeds cash amount in the cash bin", exception.getMessage());
   }
 
   @Test
@@ -55,67 +122,13 @@ public class ATMControllerTest {
     assertFalse(controller.isPinVerified());
   }
 
-  @Test
-  public void setBankBalance() {
-    when(bankMock.getBalance()).thenReturn(0);
-    controller.setBank(bankMock);
 
-    controller.setBalance();
-
-    assertEquals(0, controller.showBalance());
-  }
-
-  @Test
-  public void showBalanceIsZero() {
-    controller.setBalance(0);
-
-    assertEquals(0, controller.showBalance());
-  }
-
-  @Test
-  public void showBalanceIsTen() {
-    controller.setBalance(10);
-
-    assertEquals(10, controller.showBalance());
-  }
-
-  @Test
-  public void depositTenDollars() {
-    controller.deposit(10);
-
-    assertEquals(controller.showBalance(), 10);
-  }
-
-  @Test
-  public void depositTwentyDollars() {
-    controller.deposit(20);
-
-    assertEquals(controller.showBalance(), 20);
-  }
-
-  @Test
-  public void withdrawTenDollarsGetZeroBalance() {
-    controller.deposit(10);
-
-    controller.withdraw(10);
-
-    assertEquals(controller.showBalance(), 0);
-  }
-
-  @Test
-  public void withdrawTenDollarsGetTenBalance() {
-    controller.deposit(20);
-
-    controller.withdraw(10);
-
-    assertEquals(controller.showBalance(), 10);
-  }
-
-  @Test
-  public void withdraw100ForZeroBalance() {
-    controller.withdraw(100);
-
-    assertEquals(controller.showBalance(), 0);
-  }
+//  @Test
+//  public void setBankBalance() {
+//    when(bankMock.getBalance()).thenReturn(250);
+//    controller.setBank(bankMock);
+//
+//    assertEquals(250, controller.showBalance());
+//  }
 
 }
