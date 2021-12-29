@@ -20,8 +20,8 @@ val test by tasks.getting(Test::class) {
   useJUnitPlatform {}
   finalizedBy(tasks.jacocoTestReport)
   doLast {
-    println("View code coverage at:")
-    println("file://$buildDir/reports/tests/test/index.html")
+    println("View code coverage at: file://$buildDir/reports/jacoco/test/html/index.html")
+    println("View test results at: file://$buildDir/reports/tests/test/index.html")
   }
 }
 
