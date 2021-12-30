@@ -13,13 +13,10 @@ x- verify bank account exists with card from ATM
 x- verify bank account does not exist with card from ATM
 x- verify pin entered matches account number with bank
 x- verify pin entered does not match account number with bank
-- update balance with bank balance
-- update balance and get failed bank connection
+x- update balance with bank balance
+x- update balance and get failed bank connection
 
-- rethink how to update balance with bank balance
 - update bank account balance with withdraw/deposit (integration)
-- select account using card (integration)
-
 - Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
 - The controller responds to the user input and performs interactions on the data model objects.
 - The controller receives the input, optionally validates it and then passes the input to the model.

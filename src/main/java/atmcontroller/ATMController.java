@@ -22,7 +22,7 @@ public class ATMController {
   }
 
   public void deposit(int depositAmount) {
-    if (atm.getCashReaderAmount() != depositAmount) {
+    if (atm.getCashCounterAmount() != depositAmount) {
       throw new RuntimeException("Deposit amount does not match cash deposit.");
     }
     balance += depositAmount;
@@ -55,5 +55,4 @@ public class ATMController {
   public boolean isPinVerified() {
     return bank.isPinCorrect(getAtmCard(), getAtmPinEntered());
   }
-
 }

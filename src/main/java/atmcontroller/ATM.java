@@ -5,7 +5,7 @@ public interface ATM {
 
   int getPinEntered();
 
-  int getCashReaderAmount();
+  int getCashCounterAmount();
 
   int getCashBinAmount();
 }

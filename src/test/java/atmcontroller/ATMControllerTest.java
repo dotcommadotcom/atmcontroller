@@ -44,7 +44,7 @@ public class ATMControllerTest {
 
   @Test
   public void depositTenDollarsVerifyCorrectAmountDeposited() {
-    when(atmMock.getCashReaderAmount()).thenReturn(10);
+    when(atmMock.getCashCounterAmount()).thenReturn(10);
 
     controller.deposit(10);
 
@@ -53,7 +53,7 @@ public class ATMControllerTest {
 
   @Test
   public void depositTwentyDollarsVerifyIncorrectAmountDeposited() {
-    when(atmMock.getCashReaderAmount()).thenReturn(5);
+    when(atmMock.getCashCounterAmount()).thenReturn(5);
 
     Exception exception = assertThrows(RuntimeException.class, () -> controller.deposit(20));
 
@@ -138,35 +138,21 @@ public class ATMControllerTest {
     assertFalse(controller.isPinVerified());
   }
 
-//  @Test
-//  public void updateBalanceWithBankBalance() {
-//    when(bankMock.getBalance()).thenReturn(550);
-//
-//    controller.setBalance(bankMock.getBalance());
-//
-//    assertEquals(550, controller.showBalance());
-//  }
-//
-//  @Test
-//  public void updateBalanceAndGetFailedBankConnection() {
-//    when(bankMock.getBalance()).thenThrow(new RuntimeException("Network failure"));
-//
-//    Exception exception = assertThrows(RuntimeException.class, () -> controller.setBalance(bankMock.getBalance()));
-//
-//    assertEquals("Network failure", exception.getMessage());
-//  }
+  @Test
+  public void updateBalanceWithBankBalance() {
+    when(bankMock.getBalance()).thenReturn(550);
 
-//
+    controller.setBalance(bankMock.getBalance());
 
-//  when(bankMock.isPinCorrect(controller.getAtmCard(), controller.getAtmPinEntered())).thenReturn(false);
-//
-//  assertFalse(controller.isPinVerified());
-//  @Test
-//  public void setBankBalance() {
-//    when(bankMock.getBalance()).thenReturn(250);
-//    controller.setBank(bankMock);
-//
-//    assertEquals(250, controller.showBalance());
-//  }
+    assertEquals(550, controller.showBalance());
+  }
 
+  @Test
+  public void updateBalanceAndGetFailedBankConnection() {
+    when(bankMock.getBalance()).thenThrow(new RuntimeException("Network failure."));
+
+    Exception exception = assertThrows(RuntimeException.class, () -> controller.setBalance(bankMock.getBalance()));
+
+    assertEquals("Network failure.", exception.getMessage());
+  }
 }
