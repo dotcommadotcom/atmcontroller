@@ -1,5 +1,4 @@
 [ATM CONTROLLER]
-- Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
 x- show balance is zero
 x- show balance is ten
 x- deposit 10 and verify amount is correct with cash reader
@@ -10,18 +9,17 @@ x- withdraw more money than in bank throws exception
 x- withdraw more cash than in ATM cash bin throws exception
 x- get card number from ATM
 x- get pin entered from ATM
-x- verify pin matches account number with bank
-x- verify pin matches account number with bank
+x- verify bank account exists with card from ATM
+x- verify bank account does not exist with card from ATM
+x- verify pin entered matches account number with bank
+x- verify pin entered does not match account number with bank
+- update balance with bank balance
+- update balance and get failed bank connection
 
-- get balance from bank (integration)
+- rethink how to update balance with bank balance
 - update bank account balance with withdraw/deposit (integration)
-- do we need to verify deposit amount?
-
-- set bank balance after verifying pin and card
-- get pin from bank account (integration)
 - select account using card (integration)
 
+- Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
 - The controller responds to the user input and performs interactions on the data model objects.
 - The controller receives the input, optionally validates it and then passes the input to the model.
-
-[ATM]

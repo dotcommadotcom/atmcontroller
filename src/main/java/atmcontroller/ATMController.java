@@ -13,18 +13,6 @@ public class ATMController {
     bank = _bank;
   }
 
-  public int[] getAtmCard() {
-    return atm.getCardNumber();
-  }
-
-  public int getAtmPinEntered() {
-    return atm.getPinEntered();
-  }
-
-  public boolean isPinVerified() {
-    return bank.isPinCorrect(getAtmCard(), getAtmPinEntered());
-  }
-
   public void setBalance(int _balance) {
     balance = _balance;
   }
@@ -41,15 +29,31 @@ public class ATMController {
   }
 
   public void withdraw(int withdrawAmount) {
-    if (withdrawAmount > atm.getCashBinAmount()) {
-      throw new RuntimeException("Withdrawal amount exceeds cash amount in the cash bin");
-    }
-
     if (withdrawAmount > balance) {
       throw new RuntimeException("Withdrawal amount exceeds bank balance.");
     }
 
+    if (withdrawAmount > atm.getCashBinAmount()) {
+      throw new RuntimeException("Withdrawal amount exceeds cash amount in the cash bin.");
+    }
+
     balance -= withdrawAmount;
+  }
+
+  public int[] getAtmCard() {
+    return atm.getCardNumber();
+  }
+
+  public int getAtmPinEntered() {
+    return atm.getPinEntered();
+  }
+
+  public boolean isAccountVerified() {
+    return bank.isAccountCorrect(getAtmCard());
+  }
+
+  public boolean isPinVerified() {
+    return bank.isPinCorrect(getAtmCard(), getAtmPinEntered());
   }
 
 }
