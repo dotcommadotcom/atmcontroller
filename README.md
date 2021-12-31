@@ -12,7 +12,7 @@ $ git clone https://github.com/dotcommadotcom/atmcontroller.git && cd atmcontrol
 ```
 
 ## Building and Running Tests
-You can build the program using a Gradle Wrapper. By default, the build is configured to clean outputs, run all tests, and provide code coverage and test summary reports using JaCoCo. To get more information on what tasks are available, you can run the second command.
+You can execute the Gradle build using a Gradle Wrapper. By default, the build is configured to clean outputs, run all tests, and provide code coverage and test summary reports using JaCoCo. To get more information on what tasks are available, you can run the second command.
 ```
 $ ./gradlew
 $ ./gradlew tasks
