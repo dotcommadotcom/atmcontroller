@@ -5,10 +5,8 @@ ATM Controller is a controller that will allow the user to access their bank acc
 
 This program is designed with test-driven development and continuous integration in mind. It uses JUnit and Mockito for testing, JaCoCo for code coverage and test results, and Gradle for build automation. Its functions are limited to a controller's, leaving out implementing bank integration, ATM hardware, and user interface.
 
-
 ## Cloning
 You can clone this project using the following command.
-
 ```
 $ git clone https://github.com/dotcommadotcom/atmcontroller.git && cd atmcontroller
 ```
@@ -22,13 +20,13 @@ $ ./gradlew tasks
 Note: A Java version between 8 and 17 is required to execute Gradle. Java 18 and later versions are not yet supported.
 
 ## Code Coverage
-After running the build, there will be a code coverage report with JaCoCo. The report can be opened using the following command.
+JaCoCo will generate a code coverage report after running the build. The report can be opened using the following command.
 ```
 $ open build/reports/jacoco/test/html/index.html
 ```
 
 ## Test Summary
-After running the build, there will be a test summary with JaCoCo. The summary can be opened using the following command.
+JaCoCo will generate a test summary after running the build. The summary can be opened using the following command.
 ```
 $ open build/reports/tests/test/index.html
 ```
