@@ -1,8 +1,8 @@
 [ATM CONTROLLER]
 x- show balance is zero
 x- show balance is ten
-x- deposit 10 and verify amount is correct with cash reader
-x- deposit 20 and verify amount is not correct with cash reader
+x- deposit 10 and verify amount deposited is correct
+x- deposit 20 and verify amount deposited is not correct
 x- withdraw 10 and get zero balance
 x- withdraw 5 and get 5 balance
 x- withdraw more money than in bank throws exception
@@ -13,10 +13,11 @@ x- verify bank account exists with card from ATM
 x- verify bank account does not exist with card from ATM
 x- verify pin entered matches account number with bank
 x- verify pin entered does not match account number with bank
-x- update balance with bank balance
-x- update balance and get failed bank connection
+x- get bank account balance if account verified and pin correct
+x- get bank account balance and get failed bank connection
 
-- update bank account balance with withdraw/deposit (integration)
+
+- update bank account balance with withdraw/deposit (integration) -> how to mock?
 - Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
 - The controller responds to the user input and performs interactions on the data model objects.
 - The controller receives the input, optionally validates it and then passes the input to the model.

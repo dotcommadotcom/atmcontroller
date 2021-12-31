@@ -22,9 +22,10 @@ public class ATMController {
   }
 
   public void deposit(int depositAmount) {
-    if (atm.getCashCounterAmount() != depositAmount) {
+    if (atm.getAmountDeposited() != depositAmount) {
       throw new RuntimeException("Deposit amount does not match cash deposit.");
     }
+
     balance += depositAmount;
   }
 
@@ -48,11 +49,15 @@ public class ATMController {
     return atm.getPinEntered();
   }
 
-  public boolean isAccountVerified() {
-    return bank.isAccountCorrect(getAtmCard());
+  public boolean isAccountVerified(int[] card) {
+    return bank.isAccountCorrect(card);
   }
 
-  public boolean isPinVerified() {
-    return bank.isPinCorrect(getAtmCard(), getAtmPinEntered());
+  public boolean isPinVerified(int[] card, int pin) {
+    return bank.isPinCorrect(card, pin);
+  }
+
+  public int getBankAccountBalance() {
+    return bank.getBalance();
   }
 }
