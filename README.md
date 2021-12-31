@@ -14,14 +14,21 @@ $ git clone https://github.com/dotcommadotcom/atmcontroller.git && cd atmcontrol
 ```
 
 ## Building and Running Tests
-
-
-A Java version between 8 and 17 is required to execute Gradle. Java 18 and later versions are not yet supported.
+You can build the program using a Gradle Wrapper. By default, the build is configured to clean outputs, run all tests, and provide code coverage and test summary reports using JaCoCo. For more information on what tasks are available, run the second command.
+```
+$ ./gradlew
+$ ./gradlew tasks
+```
+Note: A Java version between 8 and 17 is required to execute Gradle. Java 18 and later versions are not yet supported.
 
 ## Code Coverage
-
 Building will create a code coverage report with JaCoCo. The report can be found using the following command.
+```
+$ open build/reports/jacoco/test/html/index.html
+```
 
-## and Running Tests
-Building will create a test result report with JaCoCo. The report can be found using the following command.
-
+## Test Summary
+Building will create a test summary with JaCoCo. The report can be found using the following command.
+```
+$ open build/reports/tests/test/index.html
+```
