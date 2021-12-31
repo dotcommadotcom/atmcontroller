@@ -1,23 +1,22 @@
 [ATM CONTROLLER]
+x- canary test
 x- show balance is zero
 x- show balance is ten
 x- deposit 10 and verify amount deposited is correct
 x- deposit 20 and verify amount deposited is not correct
 x- withdraw 10 and get zero balance
 x- withdraw 5 and get 5 balance
-x- withdraw more money than in bank throws exception
+x- withdraw more money than balance throws exception
 x- withdraw more cash than in ATM cash bin throws exception
 x- get card number from ATM
 x- get pin entered from ATM
 x- verify bank account exists with card from ATM
 x- verify bank account does not exist with card from ATM
-x- verify pin entered matches account number with bank
-x- verify pin entered does not match account number with bank
-x- get bank account balance if account verified and pin correct
+x- verify pin entered matches account with bank
+x- verify pin entered does not match account with bank
+x- get bank account balance
 x- get bank account balance and get failed bank connection
+x- update balance with bank account balance
+x- send updated balance to bank after deposit
+x- send updated balance to bank after withdrawal
 
-
-- update bank account balance with withdraw/deposit (integration) -> how to mock?
-- Insert Card => PIN number => Select Account => See Balance/Deposit/Withdraw
-- The controller responds to the user input and performs interactions on the data model objects.
-- The controller receives the input, optionally validates it and then passes the input to the model.

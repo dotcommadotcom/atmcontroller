@@ -6,4 +6,6 @@ public interface Bank {
   boolean isAccountCorrect(int[] atmCard);
 
   int getBalance();
+
+  void sendBalance(int balance);
 }

@@ -31,11 +31,11 @@ public class ATMController {
 
   public void withdraw(int withdrawAmount) {
     if (withdrawAmount > balance) {
-      throw new RuntimeException("Withdrawal amount exceeds bank balance.");
+      throw new RuntimeException("Withdrawal amount exceeds account balance.");
     }
 
     if (withdrawAmount > atm.getCashBinAmount()) {
-      throw new RuntimeException("Withdrawal amount exceeds cash amount in the cash bin.");
+      throw new RuntimeException("Withdrawal amount exceeds amount in cash bin.");
     }
 
     balance -= withdrawAmount;
@@ -59,5 +59,9 @@ public class ATMController {
 
   public int getBankAccountBalance() {
     return bank.getBalance();
+  }
+
+  public void sendBalance() {
+    bank.sendBalance(balance);
   }
 }
